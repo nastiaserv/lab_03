@@ -1,0 +1,59 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+class Book {
+    private:
+    string author;
+    int year;
+    string publisher;
+    string genre;
+    int pages;
+    public:
+    //Constructor
+    Book(string author, int year,string publisher,string genre, int pages){
+        this->authir=author;
+        this-.year=year;
+        this->publisher=publisher;
+        this->genre=genre;
+        this->pages=pages;
+      }//Getters
+      string getAuthor(){return author;}
+      int getYear(){return year;}
+      string getPublisher(){return publisher;}
+      string getGenre(){return genre;}
+      int getPages(){return pages;}
+      //Methods
+      void printInfo(){
+        cout<<"**Book Information:**"<<endl;
+        cout<<"Author:"<<author<<endl;
+        cout<<"Year:"<<year<<endl;
+        cout<<"Publisher:"<<publisher<<endl;
+        cout<<"Genre:"<<genre<<endl;
+        cout<<"Pages:"<<pages<<endl;
+      }
+      static vector<Book>getBooksByGenre(vector<Book>books,string genre){
+        vector<Book>filteredBooks;
+        for(Book book : books){
+            if(book.getGenre()==genre){
+                filteredBooks.push_back(book);
+            }
+        }
+        return filteredBooks;
+      }
+};
+int main(){
+    //Create a vector of books
+    vector<Book>books;
+    books.push_back(Book("John Doe",2023,"ABC Publishing","Fiction",300));
+    books.push_back(Book("Jane Doe",2022,"XYZ Publishing","Non-Fiction",200));
+    books.push_back(Book("Mary Sue",2021,"DEF Publishing","Sci-fi",400));
+//Get books by genre
+string genre="Fiction";
+vector<Book>filteredBooks= Book::getBooksByGenre(books,genre);
+//Print information about filtered books
+for(Book book: filteredBooks){
+    book.printInfo();
+    cout<<endl;
+}
+return 0;
+}
